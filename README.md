@@ -7,9 +7,9 @@ See API info at: https://www.ons.gov.uk/ons/apiservice/web/apiservice/home
 
 
 
-Notes
------
+Prerequisites
+-------------
 
-Package 'rsdmx' needs to be installed using 'devtools':
+* Package `rsdmx` needs to be installed using 'devtools':
 
 `install_github("rsdmx", "opensdmx")`
