@@ -1,15 +1,16 @@
-ONS API
-=======
+ONS API wrapper for R
+=====================
 
 Functions to read data from ONS (UK's Office of National Statistics).
 
-See API info at: https://www.ons.gov.uk/ons/apiservice/web/apiservice/home
 
 
 
 Prerequisites
 -------------
 
-* Package `rsdmx` needs to be installed using 'devtools':
+* Package `rsdmx` needs to be installed using `devtools`:
 
 `install_github("rsdmx", "opensdmx")`
+
+* An APIKEY: get it at https://www.ons.gov.uk/ons/apiservice/web/apiservice/home
