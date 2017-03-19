@@ -1,36 +1,16 @@
-## Functions to read data from ONS through its API
-## by Francisco Marco-Serrano, 2014
 
-
-## Function to retrieve the APIKEY
-readONSapikey <- function(){
+#' @export
+discoverONS <- function(){
   
-  if(file.exists("onsapi.key") == TRUE){      # if apikey is already recorded
-    apikey = read.csv("onsapi.key",
-                         header = FALSE)      # read it
-  } else {                                    # otherwise,
-    apikey = readline("Api key:")             # ask for it
-    write.csv(apikey, "onsapi.key",
-              row.names = FALSE)              # and write it in the file
-  }
+  domain <- "http://data.ons.gov.uk/ons/api/data/"  # Beginning of the url
+  apikey <- onsApikey()                             
   
-  apikey[2,1]
-
-}
-
-
-## Function to discover data
-discoverONSData <- function(){
-  
-  Domain = "http://data.ons.gov.uk/ons/api/data/"  # Beginning of the url
-  ApiKey = readONSapikey()                         # API Key, as provided by ONS
-  
-  url <- paste(Domain,
+  url <- paste(domain,
                "?apikey=", ApiKey,
                sep = "")
 
-  doc <- xmlParse(url)
-  doc_data <- xmlToList(doc)
+  doc      <- rsdmx::xmlParse(url)
+  doc_data <- rsdmx::xmlToList(doc)
   doc_data
   
   #TODO: present list in a human readable way.
@@ -39,9 +19,9 @@ discoverONSData <- function(){
 
   
 ## Function to retrieve data
-readONSData <- function(Path="",
-                        QueryContext="",
-                        QueryGeography=""){
+readONS <- function(path="",
+                    context="",
+                    geo=""){
 
 	Domain = "http://data.ons.gov.uk/ons/api/data/"	# Beginning of the url
 	Path = Path					                            #
@@ -62,9 +42,7 @@ readONSData <- function(Path="",
 			   "&apikey=", ApiKey,
 			   sep = "")
 
-  require(rsdmx)
-
   # TODO: control for errors (i.e. too many rows retrieved)
-  doc <- readSDMX(url)
+  doc <- rsdmx::readSDMX(url)
   
 }
