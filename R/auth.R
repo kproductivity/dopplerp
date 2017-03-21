@@ -1,4 +1,5 @@
-#Get APIKEY from 
+# Private function to read the API key
+#
 onsApikey <- function() {
   apikey <- Sys.getenv('ONS_APIKEY')
   if (identical(apikey, "")) {
@@ -14,6 +15,10 @@ onsApikey <- function() {
 #' @export
 setOnsApikey <- function(apikey) {
   
+  if (is.null(apikey)) {
+    stop("Please provide an API key", call. = FALSE)
+  }
   Sys.setenv(ONS_APIKEY = apikey)
-  
 }
+
+

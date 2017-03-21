@@ -1,20 +1,30 @@
-
+#' Discover datasets provided by ONS through its API
+#' 
+#' @param context: char,  indicates in which context to start the discovery, either: \code{Census},
+#' \code{Socio-Economic}, \code{Economic}, or \code{Social}. If \code{NULL} it starts showing the 
+#' available contexts.
+#' 
+#' 
 #' @export
-discoverONS <- function(){
+discoverONS <- function(context=NULL){
   
-  domain <- "http://data.ons.gov.uk/ons/api/data/"  # Beginning of the url
-  apikey <- onsApikey()                             
+  if (!is.null(context) && !context %in% c('Census', 'Socio-Economic', 'Economic', 'Social')) {
+    stop("Invalid parameter: 'context' must be 'Census', Socio-Economic', 'Economic', or 'Social'!")
+  }
   
-  url <- paste(domain,
-               "?apikey=", ApiKey,
-               sep = "")
+  domain <- "http://web.ons.gov.uk/ons/api/data/"  # Beginning of the url
+  url    <- paste0(domain, start, '.xml?apikey=', onsApikey())
 
-  doc      <- rsdmx::xmlParse(url)
-  doc_data <- rsdmx::xmlToList(doc)
-  doc_data
+  doc      <- XML::xmlTreeParse(url, useInternalNodes = TRUE)
+  doc_list <- XML::xmlToList(doc)
   
-  #TODO: present list in a human readable way.
+  doc_df <- if(is.null(context)) {
+              doc_list$contextList
+            } 
   
+  df <- plyr::ldply(doc_df, data.frame)[,-1]
+  df  
+
 }
 
   
