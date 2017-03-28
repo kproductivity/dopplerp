@@ -13,16 +13,23 @@ discoverONS <- function(context=NULL){
   }
   
   domain <- "http://web.ons.gov.uk/ons/api/data/"  # Beginning of the url
-  url    <- paste0(domain, start, '.xml?apikey=', onsApikey())
-
+  url    <- paste0(domain, '.xml?apikey=', onsApikey())
+  
+  if (!is.null(context)) {
+    url <- paste0(url, '&context=', context)
+  }
+  
   doc      <- XML::xmlTreeParse(url, useInternalNodes = TRUE)
   doc_list <- XML::xmlToList(doc)
   
-  doc_df <- if(is.null(context)) {
-              doc_list$contextList
-            } 
+  if(is.null(context)) {
+    doc_df <- doc_list$contextList
+    df     <- plyr::ldply(doc_df, data.frame)[,-1]
+  } else {
+    doc_df <- doc_list$linkedNodes
+    df     <- plyr::ldply(doc_df, data.frame)[, c("name", "urls.url.href")]
+  }
   
-  df <- plyr::ldply(doc_df, data.frame)[,-1]
   df  
 
 }
