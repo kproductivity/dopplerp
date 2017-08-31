@@ -6,6 +6,9 @@
 \usage{
 setOnsApikey(apikey)
 }
+\arguments{
+\item{apikey}{character : API key obtained from ONS}
+}
 \description{
 Set your ONS API key in the system
 }
