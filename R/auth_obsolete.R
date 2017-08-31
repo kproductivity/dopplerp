@@ -10,9 +10,10 @@ onsApikey <- function() {
   return(apikey)
 }
 
+
 #' Set your ONS API key in the system
 #'
-#' @param apikey character : API key obtained from ONS
+#' @param apikey: char, API key obtained from ONS
 #'   
 #' @export
 setOnsApikey <- function(apikey) {

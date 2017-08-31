@@ -4,7 +4,6 @@
 #' \code{Socio-Economic}, \code{Economic}, or \code{Social}. If \code{NULL} it starts showing the 
 #' available contexts.
 #' 
-#' 
 #' @export
 discoverONS <- function(context=NULL){
   
@@ -36,9 +35,11 @@ discoverONS <- function(context=NULL){
   
 #' Retrieve data from ONS
 #' 
-#' @param path
-#' @param context
-#' @param geo
+#' @param path: char
+#' @param context: char,  indicates in which context to start the discovery, either: \code{Census},
+#' \code{Socio-Economic}, \code{Economic}, or \code{Social}. If \code{NULL} it starts showing the 
+#' available contexts.
+#' @param geo: char
 #' 
 #' @export
 readONS <- function(path="",
@@ -46,11 +47,11 @@ readONS <- function(path="",
                     geo=""){
 
 	Domain = "http://data.ons.gov.uk/ons/api/data/"	# Beginning of the url
-	Path = Path					                            #
+	Path = path					                            #
 	Representation = "xml"	                        # Type of file (xml, json, csv...)
 	ApiKey = readONSapikey()	                      # API Key, as provided by ONS
-	QueryContext = QueryContext                     # Census, Socio-Economic, Economic, Social
-	QueryGeography = QueryGeography                 # Geographic filter (?geog=<hierarchy name>)
+	QueryContext = context                          # Census, Socio-Economic, Economic, Social
+	QueryGeography = geo                            # Geographic filter (?geog=<hierarchy name>)
 	QuerySlicing = ""					                      # Dimension filter (?dm=/<dimension>=<value>)
 	QueryPaging = ""					                      # Paging filter
 
