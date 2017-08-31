@@ -30,12 +30,17 @@ discoverONS <- function(context=NULL){
     df     <- plyr::ldply(doc_df, data.frame)[, c("name", "urls.url.href")]
   }
   
-  df  
-
+  return(df)  
 }
 
   
-## Function to retrieve data
+#' Retrieve data from ONS
+#' 
+#' @param path
+#' @param context
+#' @param geo
+#' 
+#' @export
 readONS <- function(path="",
                     context="",
                     geo=""){
@@ -62,4 +67,5 @@ readONS <- function(path="",
   # TODO: control for errors (i.e. too many rows retrieved)
   doc <- rsdmx::readSDMX(url)
   
+  return(doc)
 }

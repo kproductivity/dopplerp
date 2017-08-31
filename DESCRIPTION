@@ -11,4 +11,5 @@ LazyData: true
 RoxygenNote: 6.0.1
 BugReports: https://github.com/kproductivity/onsapiR/issues
 Imports: rsdmx,
-         XML
+         XML,
+         plyr

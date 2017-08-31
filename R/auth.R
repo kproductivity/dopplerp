@@ -3,7 +3,7 @@
 onsApikey <- function() {
   apikey <- Sys.getenv('ONS_APIKEY')
   if (identical(apikey, "")) {
-    stop("Please set env var ONS_APIKEY to your ONS API key!",
+    stop("Please set env var ONS_APIKEY to your ONS API key using setOnsApikey()!",
          call. = FALSE)
   }
   
@@ -11,7 +11,9 @@ onsApikey <- function() {
 }
 
 #' Set your ONS API key in the system
-#' 
+#'
+#' @param apikey character : API key obtained from ONS
+#'   
 #' @export
 setOnsApikey <- function(apikey) {
   
@@ -20,5 +22,3 @@ setOnsApikey <- function(apikey) {
   }
   Sys.setenv(ONS_APIKEY = apikey)
 }
-
-
