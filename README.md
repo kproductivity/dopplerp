@@ -1,6 +1,8 @@
 ONS API wrapper for R
 =====================
 
+https://travis-ci.org/kproductivity/onsapiR.svg?branch=master
+
 Functions to read data from ONS (UK's Office of National Statistics).
 
 
