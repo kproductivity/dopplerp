@@ -2,3 +2,5 @@
 
 export(discoverONS)
 export(readONS)
+importFrom(dplyr,"%>%")
+importFrom(dplyr,bind_rows)

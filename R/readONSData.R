@@ -13,8 +13,10 @@ getONSapi <- function(){
 
 #' Discover datasets provided by ONS through its API
 #'
-#' @param start: double
+#' @param start an integer indicating the starting index
+#' @param theApi a swagger ONS API. Defaults to getONSapi function
 #'
+#' @importFrom dplyr %>% bind_rows
 #' @export
 discoverONS <- function(start = 0, theApi = getONSapi()){
 

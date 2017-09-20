@@ -7,7 +7,9 @@
 discoverONS(start = 0, theApi = getONSapi())
 }
 \arguments{
-\item{start:}{double}
+\item{start}{an integer indicating the starting index}
+
+\item{theApi}{a swagger ONS API. Defaults to getONSapi function}
 }
 \description{
 Discover datasets provided by ONS through its API
