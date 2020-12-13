@@ -1,4 +1,3 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^R/*obsolete.R
-.travis.yml
